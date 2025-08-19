@@ -1,6 +1,7 @@
 "use client"
 import { ChefHat, Clock, ShoppingCart, Users } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
 export default function HomePage() {
   const router = useRouter()
@@ -25,12 +26,13 @@ export default function HomePage() {
               style. Save time, reduce food waste, and enjoy delicious meals.
             </p>
           </div>
-          <button
+          <Button
             onClick={handleStartPlanning}
-            className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+            size="lg"
+            className="px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
           >
             Start Planning
-          </button>
+          </Button>
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto">
             <div className="text-center">
