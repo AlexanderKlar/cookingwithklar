@@ -2,21 +2,14 @@
 import { useState } from "react"
 import { ChefHat, ArrowLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
-
-interface QuestionnaireAnswers {
-  familySize: string;
-  dietaryRestrictions: string[];
-  cookingTime: string;
-  cookingSkill: string;
-  budget: string;
-}
+import { Button } from "@/components/ui/button"
 
 export default function QuestionnairePage() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
-  const [answers, setAnswers] = useState<QuestionnaireAnswers>({
+  const [answers, setAnswers] = useState({
     familySize: "",
-    dietaryRestrictions: [],
+    dietaryRestrictions: [] as string[],
     cookingTime: "",
     cookingSkill: "",
     budget: ""
@@ -72,7 +65,10 @@ export default function QuestionnairePage() {
                 {['1 person', '2 people', '3-4 people', '5+ people'].map((size) => (
                   <button
                     key={size}
-                    onClick={() => setAnswers({...answers, familySize: size})}
+                    onClick={() => {
+                      const newAnswers = { ...answers, familySize: size };
+                      setAnswers(newAnswers);
+                    }}
                     className={`p-4 rounded-lg border-2 transition-all ${
                       answers.familySize === size 
                         ? 'border-orange-600 bg-orange-50 text-orange-700' 
@@ -97,17 +93,18 @@ export default function QuestionnairePage() {
                   <button
                     key={diet}
                     onClick={() => {
-                      const current = answers.dietaryRestrictions as string[]
+                      const current = answers.dietaryRestrictions
                       const isSelected = current.includes(diet)
-                      setAnswers({
+                      const newAnswers = {
                         ...answers, 
                         dietaryRestrictions: isSelected 
                           ? current.filter(d => d !== diet)
                           : [...current, diet]
-                      })
+                      };
+                      setAnswers(newAnswers);
                     }}
                     className={`p-4 rounded-lg border-2 transition-all ${
-                      (answers.dietaryRestrictions as string[]).includes(diet)
+                      answers.dietaryRestrictions.includes(diet)
                         ? 'border-orange-600 bg-orange-50 text-orange-700' 
                         : 'border-gray-200 hover:border-orange-300'
                     }`}
@@ -129,7 +126,10 @@ export default function QuestionnairePage() {
                 {['15-30 minutes', '30-60 minutes', '60+ minutes'].map((time) => (
                   <button
                     key={time}
-                    onClick={() => setAnswers({...answers, cookingTime: time})}
+                    onClick={() => {
+                      const newAnswers = { ...answers, cookingTime: time };
+                      setAnswers(newAnswers);
+                    }}
                     className={`p-6 rounded-lg border-2 transition-all ${
                       answers.cookingTime === time 
                         ? 'border-orange-600 bg-orange-50 text-orange-700' 
@@ -157,7 +157,10 @@ export default function QuestionnairePage() {
                 ].map((skill) => (
                   <button
                     key={skill.level}
-                    onClick={() => setAnswers({...answers, cookingSkill: skill.level})}
+                    onClick={() => {
+                      const newAnswers = { ...answers, cookingSkill: skill.level };
+                      setAnswers(newAnswers);
+                    }}
                     className={`p-6 rounded-lg border-2 transition-all text-left ${
                       answers.cookingSkill === skill.level 
                         ? 'border-orange-600 bg-orange-50 text-orange-700' 
@@ -182,7 +185,10 @@ export default function QuestionnairePage() {
                 {['Under $50', '$50-100', '$100-150', '$150+'].map((budget) => (
                   <button
                     key={budget}
-                    onClick={() => setAnswers({...answers, budget})}
+                    onClick={() => {
+                      const newAnswers = { ...answers, budget };
+                      setAnswers(newAnswers);
+                    }}
                     className={`p-6 rounded-lg border-2 transition-all ${
                       answers.budget === budget 
                         ? 'border-orange-600 bg-orange-50 text-orange-700' 
