@@ -1,10 +1,12 @@
 "use client"
 import { ChefHat, Clock, ShoppingCart, Users } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function HomePage() {
+  const router = useRouter()
+
   const handleStartPlanning = () => {
-    // Add navigation logic here later
-    console.log("Start planning clicked!")
+    router.push('/questionnaire')
   }
 
   return (
