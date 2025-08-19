@@ -1,13 +1,13 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { ChefHat, Clock, ShoppingCart, Users } from "lucide-react"
 
-interface LandingPageProps {
-  onStartPlanning: () => void
-}
+export default function LandingPage() {
+  const handleStartPlanning = () => {
+    // Add navigation logic here later
+    console.log("Start planning clicked!")
+  }
 
-export default function LandingPage({ onStartPlanning }: LandingPageProps) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
@@ -24,15 +24,13 @@ export default function LandingPage({ onStartPlanning }: LandingPageProps) {
               style. Save time, reduce food waste, and enjoy delicious meals.
             </p>
           </div>
-
           <Button
-            onClick={onStartPlanning}
+            onClick={handleStartPlanning}
             size="lg"
             className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
           >
             Start Planning
           </Button>
-
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto">
             <div className="text-center">
